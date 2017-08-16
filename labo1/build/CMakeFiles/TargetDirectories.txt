@@ -1,0 +1,5 @@
+/home/lbarrios/Documents/algo2/labo1/build/CMakeFiles/doc.dir
+/home/lbarrios/Documents/algo2/labo1/build/tests/google-test/CMakeFiles/gtest.dir
+/home/lbarrios/Documents/algo2/labo1/build/tests/google-test/CMakeFiles/gtest_main.dir
+/home/lbarrios/Documents/algo2/labo1/build/CMakeFiles/correrMain.dir
+/home/lbarrios/Documents/algo2/labo1/build/CMakeFiles/correrTests.dir

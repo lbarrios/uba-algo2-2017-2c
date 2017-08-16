@@ -1,0 +1,34 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/matriz.h
+vector
+-
+ostream
+-
+
+/home/lbarrios/Documents/algo2/labo1/src/matriz.cpp
+matriz.h
+/home/lbarrios/Documents/algo2/labo1/src/matriz.h
+
+/home/lbarrios/Documents/algo2/labo1/src/matriz.h
+vector
+-
+ostream
+-
+
+/home/lbarrios/Documents/algo2/labo1/src/matriz_ops.cpp
+matriz.h
+/home/lbarrios/Documents/algo2/labo1/src/matriz.h
+
+/home/lbarrios/Documents/algo2/labo1/tests/matriz-test-main.cpp
+iostream
+-
+matriz.h
+-
+

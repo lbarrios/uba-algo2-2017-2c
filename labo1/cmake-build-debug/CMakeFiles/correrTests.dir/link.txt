@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/correrTests.dir/src/matriz.cpp.o CMakeFiles/correrTests.dir/src/matriz_ops.cpp.o CMakeFiles/correrTests.dir/tests/matriz-test.cpp.o  -o correrTests tests/google-test/libgtest.a tests/google-test/libgtest_main.a tests/google-test/libgtest.a -lpthread 

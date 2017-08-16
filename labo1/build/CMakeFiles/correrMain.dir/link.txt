@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/correrMain.dir/src/matriz.cpp.o CMakeFiles/correrMain.dir/src/matriz_ops.cpp.o CMakeFiles/correrMain.dir/tests/matriz-test-main.cpp.o  -o correrMain -rdynamic 
