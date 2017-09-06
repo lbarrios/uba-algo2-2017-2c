@@ -1,0 +1,16 @@
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/install/strip.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/install.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/correrValgrind.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/list_install_components.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/install/local.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/CMakeFiles/correrTests.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/install/local.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/list_install_components.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/rebuild_cache.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/edit_cache.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/install/strip.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/install.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/gtest_main.dir
+/Users/lbarrios/facultad/algo2/taller4/cmake-build-debug/tests/google-test/CMakeFiles/gtest.dir
