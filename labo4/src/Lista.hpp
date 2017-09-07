@@ -12,15 +12,17 @@ Lista<T>::Lista(const Lista<T> &l) : Lista() {
 
 template<typename T>
 Lista<T>::~Lista() {
+    while(_primerNodo!=nullptr) {
+        eliminar(0);
+    }
 }
 
 template<typename T>
 Lista<T> &Lista<T>::operator=(const Lista<T> &l) {
-    this->_longitud = 0;
-    shared_ptr<Nodo> t(l._primerNodo);
-    while(t!=nullptr) {
-        this->agregarAtras(t->_elem);
-        t = t->siguiente;
+    this->~Lista();
+
+    for(int i=0; i<l.longitud(); i++){
+        agregarAtras(l.iesimo(i));
     }
 }
 
