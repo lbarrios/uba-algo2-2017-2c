@@ -1,0 +1,182 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Programming/Coding Assignment
+% LaTeX Template
+%
+% This template has been downloaded from:
+% http://www.latextemplates.com
+%
+% Original author:
+% Ted Pavlic (http://www.tedpavlic.com)
+%
+% Note:
+% The \lipsum[#] commands throughout this template generate dummy text
+% to fill the template out. These commands should all be removed when 
+% writing assignment content.
+%
+% This template uses a Perl script as an example snippet of code, most other
+% languages are also usable. Configure them in the "CODE INCLUSION 
+% CONFIGURATION" section.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[11pt, spanish]{article}
+
+\usepackage[spanish]{babel}
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+%\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+
+\usepackage{blindtext}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+\usepackage{cancel}
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\section*{Ejercicio 1}
+
+\framebox{\begin{minipage}{0.98\columnwidth}
+Probar utilizando las definiciones que $f \in  O(h)$, sabiendo que:
+
+a) $f, h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $f(n) = n^2 - 4n - 2$ y $h(n) = n^2$.
+
+b) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = n^k, h(n) = n^{k+1} y f\in O(g)$.
+
+c) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = log(n), h(n) = n y f \in O(g)$.
+\end{minipage}}
+
+\vspace{1em}
+a) Quiero ver que $f \in O(h)$, por definición:
+\[
+f \in  O(h) \iff f \in \{f : \mathbb{N} \to \mathbb{N} | (\exists n_0, c)(\forall n > n_0) f(n) \leq ch(n)) \}
+\] 
+
+Basta con mostrar que existen $n_0$ y $c$ que satisfagan la condición. Tomo $c=1, n_0=1$.
+
+Quiero ver que para todo $n$ mayor a $n_0$ vale que $f(n) \leq c*h(n)$. Para ello, voy a usar inducción. Verifico que la proposición vale para el caso $n_0=1$:
+\[ 
+f(1) = 1 - 4 - 2 = -5 \leq h(1) = 1 \iff -5 \leq 1
+\]
+
+Luego, basta con ver que $f(n) \leq ch(n) \Rightarrow f(n+1) \leq ch(n+1)$.
+\begin{equation*}\begin{split}
+f(n+1) &\leq ch(n+1)\\
+\cancel{(n+1)^2} - 4(n+1) - 2 &\leq \cancel{(n+1)^2}\\
+-4n - 6 &\leq 0
+\end{split}\end{equation*}
+
+Que vale para todo $n \in \mathbb{N}$ (al final no hacía falta hacer inducción, ¿no?).
+
+
+\section*{Ejercicio 2}
+\framebox{\begin{minipage}{0.98\columnwidth}
+Determinar verdadero o falso.
+
+\begin{itemize}
+	\item a) $2^n = O(1)$
+	\item b) $n = O(n!)$
+	\item c) $n! = O(n^n)$
+	\item d) $2^n = O(n!)$
+	\item e) Para todo $i,j \in \mathbb{N}, i*n = O(j*n)$
+	\item f) Para todo $k \in \mathbb{N}, 2^k = O(1)$
+	\item g) $log(n) = O(n)$
+	\item h) $n! = O(2^n)$
+	\item i) $2^n*n^2 = O(3^n)$
+	\item j) Para toda función $f: \mathbb{N} \to \mathbb{N}, f=O(f)$
+\end{itemize}
+\end{minipage}}
+
+a) $2^n = O(1)$. Supongo que la afirmación vale. Luego, debería existir un $n_0$ y un $c$ tal que $2^n <= c$ para todo $n>n_0$. Tomo $n=max(c,n_0)$. Luego, es fácil ver que $2^{n} >= c$; lo cual es una contradicción que surge de suponer que $2^n = O(1)$. Luego, la afirmación es falsa.
+
+\vspace{1em}
+b) $n = O(n!)$.
+La afirmación es verdadera. Tomo $c=1$, luego vale que 
+\[
+(\forall n \in \mathbb{N}) n <= n! \iff 1 <= n!/n \iff 1 <= (n-1)!
+\]
+
+\vspace{1em}
+c) $n! = O(n^n)$.
+La afirmación es verdadera. Vale que $(\forall n \in \mathbb{N})\ n! \leq n^n$. También vale que $n^n = O(n^n)$, luego $n! \leq n^n = O(n^n) \Rightarrow n! = O(n^n)$
+
+\vspace{1em}
+d) $2^n = O(n!)$
+
+\vspace{1em}
+e) Para todo $i,j \in \mathbb{N}, i*n = O(j*n)$
+
+\vspace{1em}
+f) Para todo $k \in \mathbb{N}, 2^k = O(1)$
+
+\vspace{1em}
+g) $log(n) = O(n)$
+
+\vspace{1em}
+h) $n! = O(2^n)$
+
+\vspace{1em}
+i) $2^n*n^2 = O(3^n)$
+
+\vspace{1em}
+j) Para toda función $f: \mathbb{N} \to \mathbb{N}, f=O(f)$
+
+\end{document}
