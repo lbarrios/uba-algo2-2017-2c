@@ -159,7 +159,19 @@ c) $n! = O(n^n)$.
 La afirmación es verdadera. Vale que $(\forall n \in \mathbb{N})\ n! \leq n^n$. También vale que $n^n = O(n^n)$, luego $n! \leq n^n = O(n^n) \Rightarrow n! = O(n^n)$
 
 \vspace{1em}
-d) $2^n = O(n!)$
+d) $2^n = O(n!)$. La afirmación es verdadera. $2^n$ es $(2 * 2 * \cdots * 2)$, es decir, $\prod_{i=1}^{n}2$. Por otro lado $O(n!)$ es $\prod_{i=1}^{n}i$. Quiero ver que a partir de un determinado $n_0$, y para una determinada $c$, vale que \[
+2^n \leq c*n! \iff \prod_{i=1}^{n}2 \leq c*\prod_{i=1}^{n}i
+\]
+Tomo $c=2$.
+\begin{equation*}\begin{split}
+2^n &\leq 2*n!\\
+\prod_{i=1}^{n}2 &\leq 2*\prod_{i=1}^{n}i\\
+1 &\leq \frac{2*\prod_{i=1}^{n}i}{\prod_{i=1}^{n}2}\\
+1 &\leq \frac{\cancel{2}*\cancel{1}*\prod_{i=2}^{n}i}{\cancel{2}* \prod_{i=2}^{n}2}\\
+1 &\leq \prod_{i=2}^{n}{\frac{i}{2}}\\
+\end{split}\end{equation*}
+
+Dado que para todo $i\geq2$ vale que $\frac{i}{2}\geq1$, el producto de esos términos es mayor o igual a 1, por lo que la proposición vale; de lo cual se desprende que $2^n \leq 2*n!$.
 
 \vspace{1em}
 e) Para todo $i,j \in \mathbb{N}, i*n = O(j*n)$
