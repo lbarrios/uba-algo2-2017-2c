@@ -36,7 +36,7 @@ typename C::value_type maximo(const C &c) {
 // El contenedor debe almacenar uno o mas valores sumables entre si y divisibles por un Nat
 template<typename C>
 typename C::value_type promedio(const C &c) {
-    double total = 0;
+    typename C::value_type total = 0;
     for (auto el:c) {
         total += el;
     }
