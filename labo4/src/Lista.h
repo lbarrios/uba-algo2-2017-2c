@@ -97,8 +97,8 @@ private:
         }
     };
 
-    shared_ptr<Nodo> _primerNodo;
-    shared_ptr<Nodo> _ultimoNodo;
+    shared_ptr<Nodo> _primerNodo = nullptr;
+    shared_ptr<Nodo> _ultimoNodo = nullptr;
 
     int _longitud = 0;
 };
