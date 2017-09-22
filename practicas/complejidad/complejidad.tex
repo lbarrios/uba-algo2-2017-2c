@@ -105,9 +105,9 @@ Probar utilizando las definiciones que $f \in  O(h)$, sabiendo que:
 
 a) $f, h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $f(n) = n^2 - 4n - 2$ y $h(n) = n^2$.
 
-b) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = n^k, h(n) = n^{k+1} y f\in O(g)$.
+b) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = n^k$, $h(n) = n^{k+1}$ y $f\in O(g)$.
 
-c) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = log(n), h(n) = n y f \in O(g)$.
+c) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = log(n)$, $h(n) = n$ y $f \in O(g)$.
 \end{minipage}}
 
 %
@@ -159,10 +159,10 @@ Quiero ver que $g \in O(h)$. Esto es lo mismo que decir que existe un par $n_0, 
 % c)
 %
 \vspace{1em}
-b) Quiero ver que $f \in O(h)$, por definición:
-\[
-f \in  O(h) \iff f \in \{f : \mathbb{N} \to \mathbb{N} | (\exists n_0, c)(\forall n > n_0) f(n) \leq ch(n)) \}
-\] 
+c) Quiero ver que $f \in O(h)$, dado que $g(n) = log(n)$, $h(n) = n$ y $f \in O(g)$.
+Al igual que con el ejercicio anterior, siendo que $f \in O(g)$, bastaría con mostrar que $g \in O(h)$ para llegar a la conclusión de que $f \in O(h)$.
+
+Quiero ver que $g \in O(h)$. Dado que $g(n) \leq h(n)$, que es lo mismo que $log(n) \leq n$, vale para todo n, al igual que sucedió con el ejercicio anterior, resulta que $g \in O(h)$. Luego, $f \in O(h)$.
 
 %----------------------------------------------------------------------------------------
 % Ejercicio 2
