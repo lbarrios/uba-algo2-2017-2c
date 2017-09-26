@@ -42,6 +42,8 @@
 
 \usepackage{cancel}
 
+\usepackage{multicol}
+
 \usepackage[a4paper, total={6in, 8in}]{geometry}
 
 
@@ -325,5 +327,37 @@ Elijo $c_0=2$. Luego, quiero ver que:
 \[ f(n) \leq 2f(n) \iff 0 \leq 2f(n)-f(n) \iff 0 \leq f(n) \]
 
 Y dado que f va de naturales en naturales, $0 \leq f(n)$ vale para cualquier n.
+
+%----------------------------------------------------------------------------------------
+% Ejercicio 2
+%----------------------------------------------------------------------------------------
+\section*{Ejercicio 3}
+\framebox{\begin{minipage}{0.98\columnwidth}
+	a) ¿Qué significa, intuitivamente, $O(f) \in O(g)$? ¿Qué se puede concluir acerca del crecimiento de $f$ y $g$ cuando, simultáneamente, tenemos $O(f) \in O(g)$ y $O(g) \in O(f)$?.\\
+	
+	b) ¿Cómo ordena por inclusión las siguientes familias de funciones?
+	\begin{multicols}{3}
+	\begin{itemize}
+		\item $O(1)$
+		\item $O(x+1)$
+		\item $O(x^2)$
+		\item $O(\sqrt{X})$
+		\item $O(1/x)$
+		
+		\item $O(x^x)$
+		\item $O(\sqrt{2})$
+		\item $O(log~x)$
+		\item $O(log^2 x)$
+		\item $O(log(x^2))$
+		
+		\item $O(log~log~x)$
+		\item $O(x!)$
+		\item $O(log(x!))$
+		\item $O(x~log~x)$
+		\item $O(1 + sin^2~x)$
+	\end{itemize}
+	\end{multicols}
+	\vspace{1em}
+\end{minipage}}
 
 \end{document}
