@@ -12,7 +12,7 @@ Lista<T>::Lista(const Lista<T> &l) : Lista() {
 
 template<typename T>
 Lista<T>::~Lista() {
-    while(_primerNodo!=nullptr) {
+    while (_primerNodo != nullptr) {
         eliminar(0);
     }
 }
@@ -21,7 +21,7 @@ template<typename T>
 Lista<T> &Lista<T>::operator=(const Lista<T> &l) {
     this->~Lista();
 
-    for(int i=0; i<l.longitud(); i++){
+    for (int i = 0; i < l.longitud(); i++) {
         agregarAtras(l.iesimo(i));
     }
 }

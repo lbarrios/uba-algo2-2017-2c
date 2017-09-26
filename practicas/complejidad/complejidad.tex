@@ -92,18 +92,27 @@
 
 \begin{document}
 
+%----------------------------------------------------------------------------------------
+% Ejercicio 1
+%----------------------------------------------------------------------------------------
 \section*{Ejercicio 1}
 
+%
+% Consigna
+%
 \framebox{\begin{minipage}{0.98\columnwidth}
 Probar utilizando las definiciones que $f \in  O(h)$, sabiendo que:
 
 a) $f, h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $f(n) = n^2 - 4n - 2$ y $h(n) = n^2$.
 
-b) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = n^k, h(n) = n^{k+1} y f\in O(g)$.
+b) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = n^k$, $h(n) = n^{k+1}$ y $f\in O(g)$.
 
-c) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = log(n), h(n) = n y f \in O(g)$.
+c) $f,g,h : \mathbb{N} \to \mathbb{N}$ son funciones tales que $g(n) = log(n)$, $h(n) = n$ y $f \in O(g)$.
 \end{minipage}}
 
+%
+% a)
+%
 \vspace{1em}
 a) Quiero ver que $f \in O(h)$, por definición:
 \[
@@ -124,9 +133,40 @@ f(n+1) &\leq ch(n+1)\\
 -4n - 6 &\leq 0
 \end{split}\end{equation*}
 
-Que vale para todo $n \in \mathbb{N}$ (al final no hacía falta hacer inducción, ¿no?).
+Que vale para todo $n \in \mathbb{N}$.
 
+%
+% b)
+%
+\vspace{1em}
+b) Quiero ver por definición que $f \in O(h)$, dado que $f \in O(g)$.
 
+Se que vale $f \in  O(g)$:
+\[
+f \in  O(g) \iff f \in \{f : \mathbb{N} \to \mathbb{N} | (\exists n_0, c)(\forall n > n_0) f(n) \leq cg(n)) \}
+\]
+
+Y quiero mostrar que vale $f \in  O(h)$:
+\[
+f \in  O(h) \iff f \in \{f : \mathbb{N} \to \mathbb{N} | (\exists n_0, c)(\forall n > n_0) f(n) \leq ch(n)) \}
+\]
+
+Dado que vale $f \in  O(g)$, se que existe un par $n_0,c_0$ tal que para todo $n$ mayor a ese $n_0$ se cumple que $f(n) \leq c_0.g(n)$. Bastaría mostrar que $g \in O(h)$, lo que implicaría que existiría un par $n_1, c_1$ tal que para todo $n$ mayor a ese $n_1$ valdría que $g(n) \leq c_1.h(n)$, es decir que existirían $n_2=n_0+n_1$ y $c_2=c_1.c_0$, tal que para todo n mayor a $n_2$ valdría $f(n) \leq c_0.g(n) \leq c_2.h(n) \iff f(n) \leq c_2.h(n) \iff f \in O(h)$.
+
+Quiero ver que $g \in O(h)$. Esto es lo mismo que decir que existe un par $n_0, c$ tal que para todo $n$ mayor a $n_0$ se cumple que $g(h) \leq c.h(n) \iff n^k \leq c.n^{k+1}$. Pero $n^k \leq c.n^k+1$ para todo n, para todo c. Luego, $g \in O(h)$. Finalmente, vale $f \in O(h)$.
+
+%
+% c)
+%
+\vspace{1em}
+c) Quiero ver que $f \in O(h)$, dado que $g(n) = log(n)$, $h(n) = n$ y $f \in O(g)$.
+Al igual que con el ejercicio anterior, siendo que $f \in O(g)$, bastaría con mostrar que $g \in O(h)$ para llegar a la conclusión de que $f \in O(h)$.
+
+Quiero ver que $g \in O(h)$. Dado que $g(n) \leq h(n)$, que es lo mismo que $log(n) \leq n$, vale para todo n, al igual que sucedió con el ejercicio anterior, resulta que $g \in O(h)$. Luego, $f \in O(h)$.
+
+%----------------------------------------------------------------------------------------
+% Ejercicio 2
+%----------------------------------------------------------------------------------------
 \section*{Ejercicio 2}
 \framebox{\begin{minipage}{0.98\columnwidth}
 Determinar verdadero o falso.
