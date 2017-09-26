@@ -256,9 +256,74 @@ h) $n! = O(2^n)$. La afirmación es falsa. Quiero ver que dados cualesquiera $n_
 Pero $\frac{i}{2} \geq 2$ para todo $i\geq4$, luego $\prod_{i=1}^{n}{\frac{i}{2}}$ es una productoria en donde todos los términos $i>4$ son mayores a 1; es decir que el límite de esta productoria cuando n tiende a infinito, es infinito. Lo significa que dada una constante cualquiera c, siempre va a existir un n tal que la productoria sea mayor a la constante, por lo que no existe ningún par $n_0, c \in \mathbb{N}$ que haga que la afirmación valga.
 
 \vspace{1em}
-i) $2^n*n^2 = O(3^n)$
+i) $2^n*n^2 = O(3^n)$. La afirmación es verdadera.
+
+Quiero ver que existe un par $c_0, n_0$ tal que para todo $n>n_0$ valga
+\[
+2^n*n^2 \leq c_0*3^n
+\]
+Esto es lo mismo que decir que 
+\[
+n^2 \leq c_0*\frac{3^n}{2^n}
+\]
+\[
+n^2 \leq c_0*(\frac{3}{2})^n
+\]
+
+Supongamos que $c_0=1$, vamos a probar que vale $P(n): n^2 \leq (\frac{3}{2})^n$ por inducción.
+
+\[
+P(1): 1^2 \leq (\frac{3}{2})^1 \iff 1 \leq \frac{3}{2}
+\]
+
+\[ P(n) \rightarrow P(n+1): \]
+\[ (n+1)^2 \leq (\frac{3}{2})^{(n+1)} \]
+\[ n^2 + 2n + 1 \leq (\frac{3}{2})^n*\frac{3}{2} \]
+\[ n^2 + 2n + 1 \leq (\frac{3}{2})^n*(\frac{2}{2}+\frac{1}{2}) \]
+\[ n^2 + 2n + 1 \leq (\frac{3}{2})^n + \frac{1}{2}*(\frac{3}{2})^n \]
+
+Por HI vale que $n^2 \leq (\frac{3}{2})^n$. Restaría ver que $2n + 1 \leq \frac{1}{2}*(\frac{3}{2})^n$.
+Para ello, vamos a volver a aplicar inducción. Queremos probar que vale $Q(n): 4n + 2 \leq (\frac{3}{2})^n$ a partir de algún $n>n_0$. Tomamos $n_0=50$.
+
+\[
+Q(50): 4*50 + 2 \leq (\frac{3}{2})^{50}
+\]
+
+\[
+202 \leq 637621500
+\]
+
+Por lo que el caso base vale. Queremos ver si vale el paso inductivo: 
+
+\[
+Q(n) \rightarrow Q(n+1): 4*(n+1) + 2 \leq \frac{3}{2}^{n+1}
+\]
+\[
+4n + 4 + 2 \leq (\frac{3}{2})^{n} * (\frac{3}{2})
+\]
+\[
+4n + 4 + 2 \leq (\frac{3}{2})^{n} + \frac{1}{2}*(\frac{3}{2})^n
+\]
+
+Pero por HI sabemos que vale $4n + 2 \leq (\frac{3}{2})^{n}$, por lo que bastaría ver que vale $4 \leq \frac{1}{2}*(\frac{3}{2})^n$. Esto es sencillo, ya que 4 es una constante, y $(\frac{3}{2})^n$ es una función creciente, por lo que si vale para un determinado $n_0$, entonces vale para cualquier $n>n_0$. En particular, vale para $n_0=50$.
+\[
+4 \leq \frac{1}{2}*(\frac{3}{2})^{50}
+\]
+\[
+4 \leq 318810750
+\]
+
+Finalmente, dado que vale Q(n) para $n_0=50$, entonces vale P(n) para $n_0=50$. Luego, existen $c_0=1, n_0=50$ a partir de los cuales vale la proposición, por lo que vale que $2^n*n^2 = O(3^n)$.
+
 
 \vspace{1em}
-j) Para toda función $f: \mathbb{N} \to \mathbb{N}, f=O(f)$
+j) Para toda función $f: \mathbb{N} \to \mathbb{N}, f=O(f)$\\
+
+Quiero ver que existe un par $c_0,n_0$ tal que $f(n) \leq c_0*f(n)$.\\
+
+Elijo $c_0=2$. Luego, quiero ver que:
+\[ f(n) \leq 2f(n) \iff 0 \leq 2f(n)-f(n) \iff 0 \leq f(n) \]
+
+Y dado que f va de naturales en naturales, $0 \leq f(n)$ vale para cualquier n.
 
 \end{document}
