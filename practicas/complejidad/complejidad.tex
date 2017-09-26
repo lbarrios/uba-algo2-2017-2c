@@ -333,7 +333,7 @@ Y dado que f va de naturales en naturales, $0 \leq f(n)$ vale para cualquier n.
 %----------------------------------------------------------------------------------------
 \section*{Ejercicio 3}
 \framebox{\begin{minipage}{0.98\columnwidth}
-	a) ¿Qué significa, intuitivamente, $O(f) \in O(g)$? ¿Qué se puede concluir acerca del crecimiento de $f$ y $g$ cuando, simultáneamente, tenemos $O(f) \in O(g)$ y $O(g) \in O(f)$?.\\
+	a) ¿Qué significa, intuitivamente, $O(f) \subseteq O(g)$? ¿Qué se puede concluir acerca del crecimiento de $f$ y $g$ cuando, simultáneamente, tenemos $O(f) \subseteq O(g)$ y $O(g) \subseteq O(f)$?.\\
 	
 	b) ¿Cómo ordena por inclusión las siguientes familias de funciones?
 	\begin{multicols}{3}
@@ -341,7 +341,7 @@ Y dado que f va de naturales en naturales, $0 \leq f(n)$ vale para cualquier n.
 		\item $O(1)$
 		\item $O(x+1)$
 		\item $O(x^2)$
-		\item $O(\sqrt{X})$
+		\item $O(\sqrt{x})$
 		\item $O(1/x)$
 		
 		\item $O(x^x)$
@@ -359,5 +359,34 @@ Y dado que f va de naturales en naturales, $0 \leq f(n)$ vale para cualquier n.
 	\end{multicols}
 	\vspace{1em}
 \end{minipage}}
+\vspace{1em}
+
+% TODO
+% TODO: A)
+% TODO
+a) Intuitivamente, $O(f) \subseteq O(g)$ significa que para todas las $f$ tales que $f \in O(f)$, vale que $f \in O(g)$. Si tenemos que $O(f) \subseteq O(g)$ y $O(g) \subseteq O(f)$, esto es como decir que $f \in O(f) \rightarrow f \in O(g)$ y que $g \in O(g) \rightarrow g \in O(f)$, es decir que $O(g) = O(f)$.\\
+
+b) \[ O(1)
+\subseteq O(\sqrt{2})
+\subseteq O(1+sin^2~x)
+\subseteq O(1/x)
+\subseteq O(log~log~x)
+\subseteq O(log~x)
+\]
+\[
+\cdots
+\subseteq O(log~x^2)
+\subseteq O(log^2~x)
+\subseteq O(\sqrt{x})
+\subseteq O(x+1)
+\subseteq O(log(x!))
+\]
+\[
+\cdots
+\subseteq O(x~log~x)
+\subseteq O(x^2)
+\subseteq O(x!)
+\subseteq O(x^x)
+\]
 
 \end{document}
