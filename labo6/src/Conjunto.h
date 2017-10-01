@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <memory>
+#include "ABB.h"
 
 using namespace std;
 
@@ -19,18 +20,7 @@ public:
      */
     bool operator==(const Conjunto &otro) const;
 
-    void mostrar(ostream &os){
-        if(_raiz != nullptr) {
-            os << _raiz;
-        } else {
-            os << "Vacío";
-        }
-    }
 
-    friend ostream &operator<<(ostream &os, Conjunto &c) {
-        c.mostrar(os);
-        return os;
-    }
 
     /**
      * Constructor sin parámetros de la clase
@@ -87,49 +77,8 @@ public:
 
 
 private:
-    struct Nodo {
-        shared_ptr<Nodo> izquierda = nullptr;
-        shared_ptr<Nodo> derecha = nullptr;
-        T _elem;
+    ABB<T> abb;
 
-        bool operator<(const T &elem) {
-            return _elem < elem;
-        };
-
-        bool operator==(const T &elem) {
-            _elem == elem;
-        }
-
-        bool operator!=(const T &elem) {
-            _elem != elem;
-        }
-
-        Nodo() : _elem() {
-        }
-
-        Nodo(const T &elem) : _elem(elem) {
-        }
-
-        void mostrar(ostream &os){
-            os << "[" << izquierda << "," << derecha << "]";
-        }
-        friend ostream &operator<<(ostream &os, Nodo& n) {
-            n.mostrar(os);
-            return os;
-        }
-    };
-
-    shared_ptr<Nodo> _raiz = nullptr;
-    size_t _longitud = 0;
-
-    shared_ptr<Conjunto<T>::Nodo> _buscarMaximoElementoMenor(const T &);
-
-    shared_ptr<Conjunto<T>::Nodo> _buscarMinimoElementoMayor(const T &);
-
-    /**
-     * Completar con lo que sea necesario...
-     * reutilizar codigo y clases ya implementadas
-     */
 };
 
 template<class T>
@@ -141,6 +90,8 @@ template<class T>
 Conjunto<T>::~Conjunto() {
 
 }
+
+/*
 
 template<class T>
 bool Conjunto<T>::operator==(const Conjunto &otro) const {
@@ -165,11 +116,11 @@ void Conjunto<T>::insertar(const T &elem) {
     } else {
         shared_ptr<Nodo> nodo = _raiz;
         while (nodo->derecha != nullptr or nodo->izquierda != nullptr) {
-            if (nodo == elem) {
+            if (*nodo == elem) {
                 // No inserto nada
                 break;
             }
-            if (elem < nodo) {
+            if (*nodo > elem) {
                 // El nodo va a ser insertado a la izquierda
                 if (nodo->izquierda != nullptr) {
                     nodo = nodo->izquierda;
@@ -177,7 +128,7 @@ void Conjunto<T>::insertar(const T &elem) {
                     nodo->izquierda = nodoAInsertar;
                 }
             }
-            if (elem > nodo) {
+            if (*nodo < elem) {
                 // El nodo va a ser insertado a la derecha
                 if (nodo->derecha != nullptr) {
                     nodo = nodo->derecha;
