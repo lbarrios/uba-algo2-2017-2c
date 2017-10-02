@@ -20,17 +20,19 @@ public:
      */
     bool operator==(const Conjunto &otro) const;
 
-
-
-    /**
-     * Constructor sin parámetros de la clase
-     */
-    Conjunto();
+    bool operator!=(const Conjunto &otro) const {
+        return not(*this == otro);
+    }
 
     /**
-     * Destructor
+     * Constructor sin parámetros de la clase por defecto
      */
-    ~Conjunto();
+    Conjunto() = default;
+
+    /**
+     * Destructor por defecto
+     */
+    ~Conjunto() = default;
 
     /**
      * Inserta un elemento
@@ -77,105 +79,95 @@ public:
 
 
 private:
-    ABB<T> abb;
+    ABB<T> _abb;
 
+    const T &_siguienteEn(const T &, ABB<T> &);
+
+    bool _todosExistenEn(const ABB<T> &, const ABB<T> &) const;
 };
 
 template<class T>
-Conjunto<T>::Conjunto() {
-
-}
-
-template<class T>
-Conjunto<T>::~Conjunto() {
-
-}
-
-/*
-
-template<class T>
 bool Conjunto<T>::operator==(const Conjunto &otro) const {
-    return false;
+    const ABB<T> &abbOtro = otro._abb;
+    return _todosExistenEn(_abb, abbOtro) and _todosExistenEn(abbOtro, _abb);
 }
 
 template<class T>
-shared_ptr<typename Conjunto<T>::Nodo> Conjunto<T>::_buscarMaximoElementoMenor(const T &elem) {
-    shared_ptr<Nodo> nodo = _raiz;
-    while (nodo->derecha != nullptr and nodo->derecha < elem) {
-        nodo = nodo->derecha;
+bool Conjunto<T>::_todosExistenEn(const ABB<T> &abb, const ABB<T> &abbOtro) const {
+    if(not abbOtro.existe(abb.raiz())){
+        return false;
     }
-    return nodo;
+    if(abb.tieneSubarbolIzquierdo() and not _todosExistenEn(abb.subarbolIzquierdo(), abbOtro)){
+        return false;
+    }
+    if(abb.tieneSubarbolDerecho() and not _todosExistenEn(abb.subarbolDerecho(), abbOtro)){
+        return false;
+    }
+    return true;
 }
 
 template<class T>
 void Conjunto<T>::insertar(const T &elem) {
-    shared_ptr<Nodo> nodoAInsertar{new Nodo(elem)};
-    if (_longitud == 0) {
-        _raiz = nodoAInsertar;
-        _longitud++;
-    } else {
-        shared_ptr<Nodo> nodo = _raiz;
-        while (nodo->derecha != nullptr or nodo->izquierda != nullptr) {
-            if (*nodo == elem) {
-                // No inserto nada
-                break;
-            }
-            if (*nodo > elem) {
-                // El nodo va a ser insertado a la izquierda
-                if (nodo->izquierda != nullptr) {
-                    nodo = nodo->izquierda;
-                } else {
-                    nodo->izquierda = nodoAInsertar;
-                }
-            }
-            if (*nodo < elem) {
-                // El nodo va a ser insertado a la derecha
-                if (nodo->derecha != nullptr) {
-                    nodo = nodo->derecha;
-                } else {
-                    nodo->derecha = nodoAInsertar;
-                }
-            }
-
-        }
+    if (not _abb.existe(elem)) {
+        _abb.insertar(elem);
     }
 }
 
 template<class T>
 bool Conjunto<T>::pertenece(const T &elem) const {
-    return false;
+    return _abb.existe(elem);
 }
 
 template<class T>
 const T &Conjunto<T>::siguiente(const T &elem) {
-    return elem;
+    return _siguienteEn(elem, _abb);
+}
+
+template<class T>
+const T &Conjunto<T>::_siguienteEn(const T &elem, ABB<T> &abb) {
+    if (elem == abb.raiz()) {
+        if (abb.tieneSubarbolDerecho()) {
+            return abb.subarbolDerecho().minimo();
+        }
+    }
+    if (elem > abb.raiz()) {
+        if (abb.tieneSubarbolDerecho()) {
+            return _siguienteEn(elem, abb.subarbolDerecho());
+        } else {
+            return elem;
+        }
+    } else {
+        if (abb.tieneSubarbolIzquierdo()) {
+            const T &siguienteEnIzquierdo = _siguienteEn(elem, abb.subarbolIzquierdo());
+            if (siguienteEnIzquierdo == elem) {
+                return abb.raiz();
+            } else {
+                return siguienteEnIzquierdo;
+            }
+        } else {
+            return abb.raiz();
+        }
+    }
 }
 
 template<class T>
 void Conjunto<T>::remover(const T &elem) {
-
+    _abb.remover(elem);
 }
 
-/*
 template<class T>
 const T &Conjunto<T>::minimo() const {
-    return initializer;
+    return _abb.minimo();
 }
-*/
 
-/*
 template<class T>
 const T &Conjunto<T>::maximo() const {
-    return <#initializer#>;
+    return _abb.maximo();
 }
-*/
 
 template<class T>
 std::size_t Conjunto<T>::cardinal() const {
-    return 0;
+    return _abb.cantidad();
 }
-
-
-#include "Conjunto.inl"
 
 #endif //ALGO2_LABO_CLASE3_CONJUNTO_H

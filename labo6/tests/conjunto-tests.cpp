@@ -5,7 +5,6 @@
 /**
  * Test simple básico
  */
-/*
 TEST(conjunto_test, conjunto_vacio) {
     Conjunto<int> c;
     EXPECT_EQ(c.cardinal(), 0);
@@ -108,4 +107,28 @@ TEST(conjunto_test, test_siguiente_inorder) {
     EXPECT_EQ(c.siguiente(4), 5);
     EXPECT_EQ(c.siguiente(15), 16);
 }
-*/
+
+TEST(conjunto_test, igualdad) {
+    Conjunto<int> c1, c2;
+    c1.insertar(1);
+    c1.insertar(2);
+    c1.insertar(3);
+    c1.insertar(4);
+    c1.insertar(5);
+    c2.insertar(3);
+    c2.insertar(4);
+    c2.insertar(5);
+    c2.insertar(1);
+    c2.insertar(2);
+    EXPECT_EQ(c1,c2);
+}
+
+TEST(conjunto_test, desigualdad) {
+    Conjunto<int> c1, c2;
+    c1.insertar(1);
+    c1.insertar(2);
+    c1.insertar(3);
+    c2.insertar(1);
+    c2.insertar(3);
+    EXPECT_NE(c1,c2);
+}
