@@ -121,10 +121,6 @@ private:
 
     void _removerRaiz();
 
-    void _removerEnSubarbolIzquierdo(const T &);
-
-    void _removerEnSubarbolDerecho(const T &);
-
     void _reemplazaRaizPorMenorDeLosHijosDerechos();
 
     void _reemplazaRaizPorHijoIzquierdo();
