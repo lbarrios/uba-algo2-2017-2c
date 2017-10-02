@@ -132,3 +132,17 @@ TEST(conjunto_test, desigualdad) {
     c2.insertar(3);
     EXPECT_NE(c1,c2);
 }
+
+TEST(conjunto_test, mostrar){
+    Conjunto<int> c;
+    c.insertar(3);
+    c.insertar(7);
+    c.insertar(2);
+    c.insertar(6);
+    c.insertar(4);
+    c.insertar(8);
+    c.insertar(9);
+    cout << c << endl;
+    /// Resultado:
+    /// Conjunto(3, 2, 7, 6, 4, 8, 9)
+}
