@@ -9,24 +9,21 @@ template<class T>
 class ABB {
 public:
 
-    ABB() {
-    }
+    ABB() {}
 
-    ABB(const T &elem) : _raiz(new T(elem)), _cantidad(1) {
-    }
+    ABB(const T &elem) : _raiz(new T(elem)), _cantidad(1) {}
 
-    void mostrar(ostream &os);
-
-    friend ostream &operator<<(ostream &os, ABB &a) {
-        a.mostrar(os);
-        return os;
-    }
-
+    /**
+     * Devuelve una referencia al subarbol izquierdo
+     * @return ABB - el subarbol izquierdo
+     */
     ABB<T> &subarbolIzquierdo() const;
-    //const ABB<T> &subarbolIzquierdo() const;
 
+    /**
+     * Devuelve una referencia al subarbol derecho
+     * @return ABB - el subarbol derecho
+     */
     ABB<T> &subarbolDerecho() const;
-    //const ABB<T> &subarbolDerecho() const;
 
     /**
      * Cantidad de elementos en el arbol
@@ -131,15 +128,6 @@ private:
 
     void _removerMaximo();
 };
-
-template<class T>
-void ABB<T>::mostrar(ostream &os) {
-    if (_raiz != nullptr) {
-        os << *_raiz;
-    } else {
-        os << "Vacío";
-    }
-}
 
 template<class T>
 const size_t ABB<T>::cantidad() const {
