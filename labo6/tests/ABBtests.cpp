@@ -7,6 +7,10 @@
 TEST(abb_test, constructor) {
     ABB<int> abb;
     EXPECT_EQ(abb.cantidad(), 0);
+    EXPECT_EQ(abb.altura(), 0);
+    EXPECT_FALSE(abb.tieneRaiz());
+    EXPECT_FALSE(abb.tieneSubarbolIzquierdo());
+    EXPECT_FALSE(abb.tieneSubarbolDerecho());
 }
 
 TEST(abb_test, agregar_suma_cantidad) {
@@ -129,4 +133,97 @@ TEST(abb_test, agregar_a_izquierda_y_derecha_aumenta_altura_en_uno) {
     abb.insertar(6);
     abb.insertar(8);
     EXPECT_EQ(abb.altura(),3);
+}
+
+TEST(abb_test, remueve_raiz){
+    ABB<int> abb(5);
+    abb.remover(5);
+    EXPECT_FALSE(abb.existe(5));
+    EXPECT_EQ(abb.cantidad(),0);
+    EXPECT_EQ(abb.altura(),0);
+}
+
+TEST(abb_test, remueve_hijo_izquierdo){
+    ABB<int> abb(5);
+    abb.insertar(4);
+    abb.remover(4);
+    EXPECT_FALSE(abb.existe(4));
+    EXPECT_EQ(abb.cantidad(),1);
+    EXPECT_EQ(abb.altura(),1);
+    abb.insertar(4);
+    abb.insertar(6);
+    abb.remover(4);
+    EXPECT_FALSE(abb.existe(4));
+    EXPECT_EQ(abb.cantidad(),2);
+    EXPECT_EQ(abb.altura(),2);
+}
+
+TEST(abb_test, remueve_hijo_derecho){
+    ABB<int> abb(5);
+    abb.insertar(6);
+    abb.remover(6);
+    EXPECT_FALSE(abb.existe(6));
+    EXPECT_EQ(abb.cantidad(),1);
+    EXPECT_EQ(abb.altura(),1);
+    abb.insertar(6);
+    abb.insertar(4);
+    abb.remover(6);
+    EXPECT_FALSE(abb.existe(6));
+    EXPECT_EQ(abb.cantidad(),2);
+    EXPECT_EQ(abb.altura(),2);
+}
+
+TEST(abb_test, remueve_raiz_a_arbol_con_hijos_izquierdos){
+    ABB<int> abb(5);
+    abb.insertar(4);
+    abb.insertar(3);
+    abb.insertar(2);
+    abb.remover(5);
+    EXPECT_FALSE(abb.existe(5));
+    EXPECT_EQ(abb.cantidad(),3);
+    EXPECT_EQ(abb.altura(),3);
+    EXPECT_EQ(abb.raiz(),4);
+}
+
+TEST(abb_test, remueve_raiz_a_arbol_con_hijos_derechos) {
+    ABB<int> abb(5);
+    abb.insertar(6);
+    abb.insertar(7);
+    abb.insertar(8);
+    abb.remover(5);
+    EXPECT_FALSE(abb.existe(5));
+    EXPECT_EQ(abb.cantidad(),3);
+    EXPECT_EQ(abb.altura(),3);
+    EXPECT_EQ(abb.raiz(),6);
+}
+
+TEST(abb_test, remueve_raiz_a_arbol_con_hijos_izquierdos_y_derechos) {
+    ABB<int> abb(5);
+    abb.insertar(3);
+    abb.insertar(7);
+    abb.insertar(2);
+    abb.insertar(4);
+    abb.insertar(6);
+    abb.insertar(8);
+    abb.remover(5);
+    EXPECT_EQ(abb.cantidad(),6);
+    EXPECT_EQ(abb.altura(),3);
+    EXPECT_NE(abb.raiz(),5);
+    EXPECT_EQ(abb.raiz(),6);
+}
+
+TEST(abb_test, remueve_hoja){
+    ABB<int> abb(5);
+    abb.insertar(3);
+    abb.insertar(7);
+    abb.insertar(2);
+    abb.insertar(4);
+    abb.insertar(6);
+    abb.insertar(8);
+    abb.insertar(9);
+    abb.remover(9);
+    EXPECT_EQ(abb.cantidad(),7);
+    EXPECT_EQ(abb.altura(),3);
+    EXPECT_EQ(abb.raiz(),5);
+    EXPECT_FALSE(abb.existe(9));
 }

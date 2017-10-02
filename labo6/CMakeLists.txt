@@ -24,3 +24,11 @@ target_link_libraries(correrTestsABB gtest gtest_main)
 # Test suites a ejecutar
 add_test(correrTests conjunto_test)
 add_test(correrTestsABB ABB_test)
+
+# Target para correr Valgrind
+add_custom_target(correrValgrind
+        valgrind --leak-check=full -v ./correrTests 2>&1
+        DEPENDS correrTests)
+add_custom_target(correrValgrindABB
+        valgrind --leak-check=full -v ./correrTestsABB 2>&1
+        DEPENDS correrTestsABB)
