@@ -5,19 +5,25 @@
 #include <iterator>
 #include <vector>
 #include <algorithm>    // std::min
+#include <functional>
 
 // Nombres de las operaciones a implementar en el Taller
 // Ver ../tests/algo-tests.cpp para ejemplos de uso de estas operaciones.
+
+template<typename C>
+typename C::value_type mejorSegun(const C &c, std::function<bool(typename C::value_type, typename C::value_type)> f){
+    auto mejorIt = c.begin();
+    for (auto it = c.begin(); it != c.end(); it++) {
+        mejorIt = f(*it, *mejorIt) ? it : mejorIt;
+    }
+    return (*mejorIt);
+}
 
 // minimo: minimo valor del contenedor pasado como parámetro.
 // El contenedor debe almacenar valores ordenables
 template<typename C>
 typename C::value_type minimo(const C &c) {
-    auto minIt = c.begin();
-    for (auto it = c.begin(); it != c.end(); it++) {
-        minIt = (*it) < (*minIt) ? it : minIt;
-    }
-    return (*minIt);
+    return mejorSegun(c, [](typename C::value_type a, typename C::value_type b){ return a<b; });
 }
 
 
@@ -25,11 +31,7 @@ typename C::value_type minimo(const C &c) {
 // El contenedor debe almacenar valores ordenables
 template<typename C>
 typename C::value_type maximo(const C &c) {
-    auto maxIt = c.begin();
-    for (auto it = c.begin(); it != c.end(); it++) {
-        maxIt = (*it) > (*maxIt) ? it : maxIt;
-    }
-    return (*maxIt);
+    return mejorSegun(c, [](typename C::value_type a, typename C::value_type b){ return a>b; });
 }
 
 // promedio: valor promedio del contenedor pasado como parámetro
