@@ -142,7 +142,7 @@ TEST(conjunto_test, mostrar){
     c.insertar(4);
     c.insertar(8);
     c.insertar(9);
-    cout << c << endl;
-    /// Resultado:
-    /// Conjunto(3, 2, 7, 6, 4, 8, 9)
+    stringstream ss;
+    ss << c;
+    EXPECT_EQ("Conjunto(3, 2, 7, 6, 4, 8, 9)", ss.str());
 }
