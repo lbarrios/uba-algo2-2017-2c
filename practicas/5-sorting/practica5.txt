@@ -8,3 +8,17 @@ Heap Sort: O(n logn)
 
 Merge Sort: O(n logn)
 Quick Sort: O(n logn)
+
+Ejercicio 2) Imagine secuencias de naturales de la forma s = Concatenar (s', s''), donde s' es una secuencia ordenada de naturales y s'' es una secuencia de naturales elegidos al azar. Qué método utilizaría para ordenar s? Justificar. (Entiéndase que s' se encuentra ordenada de la manera deseada.)
+
+Puedo ordenar la secuencia s'', con cualquier algoritmo eficiente (ej quicksort, heapsort, treesort) y luego mergear ambas partes en O(n). El costo total de hacer esto sería O("ordenar s''") + O("largo de s").
+
+Ejercicio 3) Escribir un algoritmo que encuentre los k elementos más chicos de un arreglo de dimensión n, donde k ≤ n. ¿Cuál es su complejidad temporal? ¿A partir de qué valor de k es ventajoso ordenar el arreglo entero primero?
+
+input: A arreglo de dimensión n
+
+resultado = list // En B van a estar los resultados
+min_heapify(A) // min-heapify in-place sobre A
+for(i=0; i<k; i++){
+	append(B, extract-min(A));
+}
