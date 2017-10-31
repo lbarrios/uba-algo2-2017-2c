@@ -22,3 +22,19 @@ min_heapify(A) // min-heapify in-place sobre A
 for(i=0; i<k; i++){
 	append(B, extract-min(A));
 }
+
+Ejercicio 4) Se tiene un conjunto de n secuencias {s_1, s_2, ... , s_n} en donde cada s_i (1 ≤ i ≤ n) es una secuencia ordenada de naturales. ¿Qué método utilizaría para obtener un arreglo que contenga todos los elementos de la unión de los s_i ordenados. Describirlo. Justificar.
+
+0) Creo un arreglo vacío de tamaño igual a la suma de los tamaños de las secuencias (llamemos a este tamaño K).
+
+1) Formo las tuplas T_i = (f_i, i, *s_i), en donde f_i es el primer elemento de s_i, para cada s_i (1 ≤ i ≤ n). Esto lo hago en O(n). Es claro que hay un orden estricto entre las distintas T_i, ya que aún suponiendo que todos los f_i sean iguales, cada T_i va a corresponderse a un índice i distinto.
+
+2) Armo un heap con estas tuplas en O(n log n). Particularmente, el primer elemento del heap siempre va a tener al siguiente elemento que voy a agregar a la secuencia (pues dado que las secuencias están ordenadas, voy a querer agregar el menor/mayor de entre los primeros elementos de todas las secuencias.)
+
+3) Mientras existan elementos en el heap, realizo:
+	3.a) Hago pop() del primer elemento. O(log n)
+	3.b) Inserto el f_i correspondiente en el array. O(1)
+	3.c) Avanzo la secuencia s_i correspondiente, y si aún quedan elementos en ella, genero una nueva tupla T_i' = (f_i', i, *s_i), tal que f_i' es el siguiente elemento de s_i (es decir, al que acabo de avanzar). En caso de que la secuencia s_i haya quedado vacía, salteo el siguiente paso. O(1)
+	3.d) Inserto la tupla T_i' en el heap. O(log n)
+
+4) En total, voy a insertar todos los elementos de todas las secuencias, es decir K elementos, y cada paso me va a costar O(log n). El algoritmo va a tener una complejidad de O(K * log n).
