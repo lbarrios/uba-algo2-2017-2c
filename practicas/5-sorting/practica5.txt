@@ -38,3 +38,26 @@ Ejercicio 4) Se tiene un conjunto de n secuencias {s_1, s_2, ... , s_n} en donde
 	3.d) Inserto la tupla T_i' en el heap. O(log n)
 
 4) En total, voy a insertar todos los elementos de todas las secuencias, es decir K elementos, y cada paso me va a costar O(log n). El algoritmo va a tener una complejidad de O(K * log n).
+
+
+Ejercicio 5) Se tiene un arreglo de n números naturales que se quiere ordenar por frecuencia, y en caso de igual frecuencia, por su valor. Por ejemplo, a partir del arreglo [1, 3, 1, 7, 2, 7, 1, 7, 3] se quiere obtener [1, 1, 1, 7, 7, 7, 3, 3, 2]. Describa un algoritmo que realice el ordenamiento descrito, utilizando las estructuras de datos intermedias que considere necesarias. Calcule el orden de complejidad temporal del algoritmo propuesto.
+
+1) Ordeno el arreglo A en O(n log n) utilizando cualquier algoritmo de sorting eficiente (ej heap sort).
+
+Ejemplo, dado A = [1, 3, 1, 7, 2, 7, 1, 7, 3], el resultado es A = [1, 1, 1, 2, 3, 3, 7, 7, 7]
+
+2) Genero un arreglo cantidades de tamaño máximo n, que va a tener tuplas (c_i, n_i), en donde n_i es un núḿero y c_i es la cantidad de veces que aparece.
+
+3) Itero sobre el arreglo A con dos índices i1, i2, en donde voy a ir avanzando i2 hasta encontrar un número distinto a i1, y luego comenzando con i1=i2, definiendo intervalos para cada número, contando la cantidad de apariciones de cada uno como la resta entre ambos índices. Ejemplo, en A:
+	* comienzo con i2=i1=k=0.
+	* mientras i2 != largo(A)
+		* mientras A[i2] == A[i1]: i2++
+		* cantidades[k] = i2-i1 = 3
+		* k++
+
+Usando A, el arreglo me quedaría al final cantidades = [(3,1), (1,2), (2,3), (3,7)]
+
+4) Al final del punto anterior, voy a tener un arreglo en donde voy a tener tuplas con la frecuencia correspondiente para cada elemento. Ordeno este array en O(n log n) utilizando cualquier algoritmo de sorting eficiente (ej, heap sort). Defino la comparación de dos tuplas como T_a < T_b ssi { (T_a[0] > T_b[0]) or (T_a[0] == T_b[0] and T_a[1] < T_b[1]) }. Usando el ejemplo, el arreglo me quedaría ordenado así:
+cantidades = [(3,1), (3,7), (2,3), (1,2)]
+
+5) Escribo sobre A el resultado, que sería iterar sobre cantidades y escribir la cantidad de elementos correspondiente en el orden en que se encuentran allí. En el ejemplo, esto sería, tres 1, tres 7, dos 3, y un 2. Me quedaría A=[1, 1, 1, 7, 7, 7, 3, 3, 2].
