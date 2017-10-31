@@ -226,3 +226,28 @@ Ejercicio 14) Se tiene un arreglo A de n números naturales y un entero k. Se de
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 15) Dado un conjunto de naturales, diremos que un agujero es un natural x tal que el conjunto no contiene a x y sí contiene algún elemento menor que x y algún elemento mayor que x.
+
+Diseñar un algoritmo que, dado un arreglo de n naturales, diga si existe algún agujero en el conjunto de los naturales que aparecen en el arreglo. Notar que el arreglo de entrada podría contener elementos repetidos, pero en la vista de conjunto, no es relevante la cantidad de repeticiones.
+
+	a) Implementar la función tieneAgujero?(in A: arreglo(nat)) → bool que resuelve el problema planteado. La función debe ser de tiempo lineal en la cantidad de elementos de la entrada, es decir, O(n), dónde n = tam(A).
+
+	b) Calcular y justificar la complejidad del algoritmo propuesto.
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 16) Se tiene un arreglo A de n números naturales. Sea m := max{A[i] : 1 ≤ i ≤ n} el m´aximo del arreglo. Se desea dar un algoritmo que ordene el arreglo en O(n log m), utilizando únicamente arreglos y variables ordinarias
+(i.e., sin utilizar listas enlazadas, árboles u otras estructuras con punteros).
+
+	a) Implementar la función raroSort(in A: arreglo(nat)) → bool que resuelve el problema planteado. La función debe ser de tiempo O(n log m), donde n = tam(A) y m = max{A[i] : 1 ≤ i ≤ n}.
+
+	b) Calcular y justificar la complejidad del algoritmo propuesto.
+
+	c) Hay al menos 3 formas de resolver este ejercicio, pensar las que se puedan, discutir luego con los compañeros las que encontraron ellos y si hace falta, consultar.
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
