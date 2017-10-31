@@ -4,6 +4,8 @@
 
 Ejercicio 1) Comparar la complejidad de los algoritmos de ordenamiento dados en la teórica para el caso en que el arreglo a ordenar se encuentre perfectamente ordenado de manera inversa a la deseada.
 
+--
+
 Insertion Sort: O(n^2)
 Tree Sort: O(n logn)
 
@@ -19,6 +21,8 @@ Quick Sort: O(n logn)
 
 Ejercicio 2) Imagine secuencias de naturales de la forma s = Concatenar (s', s''), donde s' es una secuencia ordenada de naturales y s'' es una secuencia de naturales elegidos al azar. Qué método utilizaría para ordenar s? Justificar. (Entiéndase que s' se encuentra ordenada de la manera deseada.)
 
+--
+
 Puedo ordenar la secuencia s'', con cualquier algoritmo eficiente (ej quicksort, heapsort, treesort) y luego mergear ambas partes en O(n). El costo total de hacer esto sería O("ordenar s''") + O("largo de s").
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -26,6 +30,8 @@ Puedo ordenar la secuencia s'', con cualquier algoritmo eficiente (ej quicksort,
 ///////////////////////////////////////////////////////////////////////////////
 
 Ejercicio 3) Escribir un algoritmo que encuentre los k elementos más chicos de un arreglo de dimensión n, donde k ≤ n. ¿Cuál es su complejidad temporal? ¿A partir de qué valor de k es ventajoso ordenar el arreglo entero primero?
+
+--
 
 input: A arreglo de dimensión n
 
@@ -40,6 +46,8 @@ for(i=0; i<k; i++){
 ///////////////////////////////////////////////////////////////////////////////
 
 Ejercicio 4) Se tiene un conjunto de n secuencias {s_1, s_2, ... , s_n} en donde cada s_i (1 ≤ i ≤ n) es una secuencia ordenada de naturales. ¿Qué método utilizaría para obtener un arreglo que contenga todos los elementos de la unión de los s_i ordenados. Describirlo. Justificar.
+
+--
 
 0) Creo un arreglo vacío de tamaño igual a la suma de los tamaños de las secuencias (llamemos a este tamaño K).
 
@@ -60,6 +68,8 @@ Ejercicio 4) Se tiene un conjunto de n secuencias {s_1, s_2, ... , s_n} en donde
 ///////////////////////////////////////////////////////////////////////////////
 
 Ejercicio 5) Se tiene un arreglo de n números naturales que se quiere ordenar por frecuencia, y en caso de igual frecuencia, por su valor. Por ejemplo, a partir del arreglo [1, 3, 1, 7, 2, 7, 1, 7, 3] se quiere obtener [1, 1, 1, 7, 7, 7, 3, 3, 2]. Describa un algoritmo que realice el ordenamiento descrito, utilizando las estructuras de datos intermedias que considere necesarias. Calcule el orden de complejidad temporal del algoritmo propuesto.
+
+--
 
 a) Ordeno el arreglo A en O(n log n) utilizando cualquier algoritmo de sorting eficiente (ej heap sort).
 
@@ -85,7 +95,7 @@ e) Escribo sobre A el resultado, que sería iterar sobre cantidades y escribir l
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-6) Ejercicio 6)
+Ejercicio 6)
 Sea A[1 . . . n] un arreglo que contiene n números naturales. Diremos que un rango de posiciones [i . . . j], con 1 ≤ i ≤ j ≤ n, contiene una escalera en A si valen las siguientes dos propiedades:
 
 	1. (∀ k : nat) i ≤ k < j ⇒ A[k + 1] = A[k] + 1 (esto es, los elementos no sólo están ordenados en forma creciente, sino que además el siguiente vale exactamente uno más que el anterior).
@@ -102,3 +112,85 @@ debería ser transformado a
 7 8 9 | 8 9 10 | 5 6 | 15 | 20
 
 Ayuda: se aconseja comenzar el ejercicio con una clara descripción en castellano de la estrategia que propone para resolver el problema.
+
+--
+
+TODO;
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 7) Suponga que su objetivo es ordenar arreglos de naturales (sobre los que no se conoce nada en especial), y que cuenta con una implementación de árboles AVL. Se le ocurre alguna forma de aprovecharla? Conciba un algoritmo que llamaremos AVL Sort. Cuál es el mejor orden de complejidad que puede lograr?
+Ayuda: debería hallar un algoritmo que requiera tiempo O(n log d) en peor caso, donde n es la cantidad de elementos a ordenar y d es la cantidad de elementos distintos. Para inspirarse, piense en Heap Sort (no en los detalles puntuales, sino en la idea general de este último).
+Justifique por qué su algoritmo cumple con lo pedido.
+
+--
+
+Pongo todos los elementos en un AVL. Luego devuelvo el resultado de recorrerlos de menor a mayor (o mayor a menor, según el caso).
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 8) Se tienen dos arreglos de números naturales, A[1..n] y B[1..m]. Nada en especial se sabe de B, pero A tiene n' secuencias de números repetidos continuos (por ejemplo A = [3333311118888877771145555], n' = 7). Se sabe además que n' es mucho más chico que n. Se desea obtener un arreglo C de tamaño n + m que contenga los elementos de A y B, ordenados.
+
+	1. Escriba un algoritmo para obtener C que tenga complejidad temporal O(n + (n' + m) log(n' + m)) en el peor caso. Justifique la complejidad de su algoritmo.
+	2. Suponiendo que todos los elementos de B se encuentran en A, escriba un algoritmo para obtener C que tenga complejidad temporal O(n + n' (log(n') + m)) en el peor caso y que utilice solamente arreglos como estructuras auxiliares. Justifique la complejidad de su algoritmo.
+
+--
+
+TODO;
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 9) Considere la siguiente estructura para guardar las notas de un alumno de un curso:
+
+--------------------------------------------------------------
+alumno es tupla<nombre: string, sexo: FM, puntaje: Nota>
+donde FM es enum{masc, fem} y Nota es un nat no mayor que 10.
+--------------------------------------------------------------
+
+Se necesita ordenar un arreglo(alumno) de forma tal que todas las mujeres aparezcan al inicio de la tabla según un orden creciente de notas y todos los varones aparezcan al final de la tabla también ordenados de manera creciente respecto de su puntaje, como muestra en el siguiente ejemplo:
+
+---------------------------------------------
+|		Entrada			|		Salida		|
+|	Ana 	F 	10		|	Rita 	F 	6	|
+|	Juan 	M 	6		|	Paula 	F 	7	|
+|	Rita 	F 	6		|	Ana 	F 	10	|
+|	Paula 	F 	7 		|	Juan 	M 	6	|
+|	Jose 	M 	7		|	Jose 	M 	7	|
+|	Pedro 	M 	8 		|	Pedro 	M 	8	|
+---------------------------------------------
+
+	1. Proponer un algoritmo de ordenamiento ordenaPlanilla(inout p: planilla) para resolver el problema descripto anteriormente y cuya complejidad temporal sea O(n) en el peor caso, donde n es la cantidad de elementos del arreglo. Justificar.
+
+	2. Supóngase ahora que la planilla original ya se encuentra ordenada alfabéticamente por nombre. Puede asegurar que si existen dos o más mujeres con igual nota, entonces las mismas aparecerán en orden alfabético en la planilla ordenada? Justifique su respuesta.
+
+	3. La cota O(n) contradice el “lower bound” sobre la complejidad temporal en el peor caso de los algoritmos de ordenamiento? (El Teorema de “lower bound” establece que todo algoritmo general de ordenamiento tiene complejidad temporal Ω(n log n).) Explique su respuesta.
+
+--
+
+TODO;
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
