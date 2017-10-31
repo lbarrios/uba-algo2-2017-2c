@@ -1,0 +1,10 @@
+Ejercicio 1) Comparar la complejidad de los algoritmos de ordenamiento dados en la teórica para el caso en que el arreglo a ordenar se encuentre perfectamente ordenado de manera inversa a la deseada.
+
+Insertion Sort: O(n^2)
+Tree Sort: O(n logn)
+
+Selection Sort: O(n^2)
+Heap Sort: O(n logn)
+
+Merge Sort: O(n logn)
+Quick Sort: O(n logn)
