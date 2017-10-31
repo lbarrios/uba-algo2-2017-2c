@@ -137,6 +137,62 @@ private:
     void redimensionarTabla();
 };
 
+template <typename V>
+bool DiccHash<V>::operator==(const DiccHash &otro) const {
+    return false;
+}
+
+template <typename V>
+bool DiccHash<V>::Definido(const string &clav) const {
+    return false;
+}
+
+template <typename V>
+void DiccHash<V>::Definir(const string &clav, const V &sig) {
+
+}
+
+template <typename V>
+V &DiccHash<V>::Significado(const string &clav) {
+    auto a = new V();
+    return *a;
+}
+
+template <typename V>
+void DiccHash<V>::Borrar(const string &clav) {
+
+}
+
+template <typename V>
+unsigned int DiccHash<V>::CantClaves() const {
+    return 0;
+}
+
+template <typename V>
+set<string> DiccHash<V>::Claves() const {
+    return set<string>();
+}
+
+template <typename V>
+float DiccHash<V>::factorCarga() const {
+    return 0;
+}
+
+template <typename V>
+unsigned int DiccHash<V>::colisiones() const {
+    return 0;
+}
+
+template <typename V>
+unsigned int DiccHash<V>::fn_hash(const string &str) const {
+    return 0;
+}
+
+template <typename V>
+void DiccHash<V>::redimensionarTabla() {
+
+}
+
 
 #include "DiccHash.inl"
 
