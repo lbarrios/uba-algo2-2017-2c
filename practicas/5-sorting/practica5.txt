@@ -249,13 +249,23 @@ Recorro el arreglo notasMujeres, y para cada lista no-vacía, la recorro, insert
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 
-Ejercicio 10)  Suponer que se tiene un hipotético algoritmo de “casi” ordenamiento casiSort que dado un arreglo A de n elementos, ordena n/2 elementos arbitrarios colocándolos en la mitad izquierda del arreglo A[1 ... n/2]. Los elementos no ordenados de A se colocan en la mitad derecha A[n/2 + 1 ... n].
+Ejercicio 10) Suponer que se tiene un hipotético algoritmo de “casi” ordenamiento casiSort que dado un arreglo A de n elementos, ordena n/2 elementos arbitrarios colocándolos en la mitad izquierda del arreglo A[1 ... n/2]. Los elementos no ordenados de A se colocan en la mitad derecha A[n/2 + 1 ... n].
 	
 	1. Describir un algoritmo de ordenamiento para arreglos de n elementos (con n potencia de 2) utilizando el algoritmo casiSort.
 	
 	2. Obtener la complejidad temporal en el peor caso del algoritmo dado en el punto anterior, suponiendo que casiSort tiene complejidad temporal Θ(n).
 
 	3. Cree que es posible diseñar un algoritmo para casiSort que realice O(n) comparaciones en el peor caso? Justifique su respuesta.
+
+--
+
+1) aplico casiSort sobre el arreglo, y sobre el arreglo resultado, aplico casiSort sobre la mitad desordenada. Hago esto hasta llegar al caso base en que el arreglo tiene tamaño 2, y ordeno comparando.
+
+2) En el peor caso el costo es
+
+T(n) = Θ(n) + T(n/2), que es Θ(n) + Θ(n/2) + Θ(n/4) + ... + Θ(1), que es Θ(n + n/2 + n/4 + ... + 1), que es Θ( sumatoria(i=1..logn;n/2^i) ), que es Θ( n * sumatoria(i=1..logn;1/2^i) ), que es Θ(n) * Θ(sumatoria(i=1..logn;1/2^i) ). Esta sumatoria en particular es una p-serie, con p = 2. Dado que p>1, vale que la serie con n tendiendo a infinito converge (no importa a qué número). Lo que quiere decir que la sumatoria está acotada para cualquier n, es decir que Θ(sumatoria(i=1..logn;1/2^i) ) = Θ(1). Finalmente, la complejidad es Θ(n).
+
+3) Si, el algoritmo descripto lo hace.
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -264,6 +274,10 @@ Ejercicio 10)  Suponer que se tiene un hipotético algoritmo de “casi” orden
 Ejercicio 11) Sea A[1 ... n] un arreglo de números naturales en rango (cada elemento está en el rango de 1 a k, siendo k alguna constante). Diseñe un algoritmo que ordene esta clase de arreglos en tiempo O(n). Demuestre que la
 cota temporal es correcta.
 
+--
+
+TODO;
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -271,6 +285,10 @@ cota temporal es correcta.
 Ejercicio 12) Se desea ordenar los datos generados por un sensor industrial que monitorea la presencia de una sustancia en un proceso químico. Cada una de estas mediciones es un número entero positivo. Dada la naturaleza del proceso se sabe que, dada una secuencia de n mediciones, a lo sumo piso[√n] valores están fuera del rango [20, 40].
 
 Proponer un algoritmo O(n) que permita ordenar ascendentemente una secuencia de mediciones y justificar la complejidad del algoritmo propuesto.
+
+--
+
+TODO;
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -283,6 +301,10 @@ O(l). Se desea ordenar A en base a la segunda componente y luego la primera.
 
 	2. Suponiendo que los naturales de la primer componente están acotados, adapte su algoritmo para que tenga complejidad temporal O(nl) en el peor caso. Justifique la complejidad de su algoritmo.
 
+--
+
+TODO;
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -292,6 +314,10 @@ Ejercicio 14) Se tiene un arreglo A de n números naturales y un entero k. Se de
 	a) Implementar la función ordenarMultiplos(in A: arreglo(nat), in k: nat) → arreglo(nat) que resuelve el problema planteado. La función debe ser de tiempo O(nk log n), en donde n = tam(A).
 
 	b) Calcular y justificar la complejidad del algoritmo propuesto.
+
+--
+
+TODO;
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -305,6 +331,10 @@ Diseñar un algoritmo que, dado un arreglo de n naturales, diga si existe algún
 
 	b) Calcular y justificar la complejidad del algoritmo propuesto.
 
+--
+
+TODO;
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -317,6 +347,10 @@ Ejercicio 16) Se tiene un arreglo A de n números naturales. Sea m := max{A[i] :
 	b) Calcular y justificar la complejidad del algoritmo propuesto.
 
 	c) Hay al menos 3 formas de resolver este ejercicio, pensar las que se puedan, discutir luego con los compañeros las que encontraron ellos y si hace falta, consultar.
+
+--
+
+TODO;
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
