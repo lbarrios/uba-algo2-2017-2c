@@ -182,7 +182,23 @@ Ejercicio 8) Se tienen dos arreglos de números naturales, A[1..n] y B[1..m]. Na
 
 --
 
-TODO;
+* Recorro A en O(n). Para cada secuencia de repetidos, inserto una tupla en un arreglo A', con la forma <i, cantidad>, en donde i es el número, y cantidad es la cantidad de veces que se repite. Dado que hay n' secuencias, el tamaño de A' va a ser n'. Con el A de ejemplo, esto sería:
+
+A = [3333311118888877771145555]
+A' = [(3,5) (1,4) (8,5) (7,4) (1,2) (4,1) (5,4)]
+
+Hacer todo esto me cuesta O(n) + O(n'), y dado que n' < n, en particular esto es O(n), por lo que cumple la complejidad pedida.
+
+* Ordeno A' en O((n')log(n')). Esto es en particular O((m+n')log(m+n')), por lo que cumple la complejidad pedida.
+
+* Ordeno B en O((m)log(m)). Esto es en particular O((m+n')log(m+n')), por lo que cumple la complejidad pedida.
+
+* Recorro A', y para cada elemento a', uso búsqueda binaria para buscar la posición en donde iría ubicado este elemento en el arreglo B.
+
+* Genero un arreglo vacío C de tamaño m+n. Esto es O(n+m), y en particular es O(n+(m+n')), y cumple con la complejidad pedida.
+
+* Recorro mediante dos iteradores en A' y en B. Voy insertando el menor de ambos en C, y avanzando el iterador correspondiente. En caso de que alguno llegue al final, inserto todos los restantes del otro. Esto es básicamente un merge entre dos arreglos ordenados, con la consideración de que uno de ellos está "comprimido". Por tal motivo, cada vez que haga una inserción del elemento a' desde A' hacia C, voy a insertar el elemento que está en la primera posición de la tupla a', la cantidad de veces indicada por la segunda posición de la tupla a'. Es decir, si a' = (3,5), voy a insertar el 3 cinco veces. El costo de hacer todo esto es, recorrer A' en O(n'), más el costo de recorrer B en O(m), más el costo de insertar m+n elementos en C, que es O(m+n). Es decir, O(n'+m+m+n) = O(n+(m+n')), que en particular es O(n + (n' + m) log(n' + m)), por lo que cumple con la complejidad pedida.
+
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
