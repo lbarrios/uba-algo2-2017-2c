@@ -96,7 +96,7 @@ e) Escribo sobre A el resultado, que sería iterar sobre cantidades y escribir l
 ///////////////////////////////////////////////////////////////////////////////
 
 Ejercicio 6)
-Sea A[1 . . . n] un arreglo que contiene n números naturales. Diremos que un rango de posiciones [i . . . j], con 1 ≤ i ≤ j ≤ n, contiene una escalera en A si valen las siguientes dos propiedades:
+Sea A[1 ... n] un arreglo que contiene n números naturales. Diremos que un rango de posiciones [i ... j], con 1 ≤ i ≤ j ≤ n, contiene una escalera en A si valen las siguientes dos propiedades:
 
 	1. (∀ k : nat) i ≤ k < j ⇒ A[k + 1] = A[k] + 1 (esto es, los elementos no sólo están ordenados en forma creciente, sino que además el siguiente vale exactamente uno más que el anterior).
 
@@ -115,7 +115,49 @@ Ayuda: se aconseja comenzar el ejercicio con una clara descripción en castellan
 
 --
 
-TODO;
+Lo primero sería reconocer y guardar las escaleras.
+
+Cada escalera se puede guardar en una lista, cuyo tamaño máximo va a ser n (ya que el peor caso es que haya n escaleras, de 1 elemento cada una).
+
+Reconocer las escaleras se puede hacer en forma lineal, utilizando la siguiente lógica. Tomo un elemento "i" del arreglo. Este elemento es una "subescalera" (una escalera que cumple sólamente la propiedad 1). Avanzo una posición, a "i+1". Si vale que A[i+1]=A[i]+1, entonces A[i]+A[i+1] forman una escalera. Avanzo nuevamente, y aplico la misma lógica, hasta encontrar algún j para el que no valga que A[j+1]=A[j]+1. El subarreglo A[i...j] es una escalera, ya que cumple la propiedad 1, y además cumple la propiedad 2 (no puede ser extendida).
+
+Para guardar las escaleras, basta con guardar el índice en el cual comienza la escalera, y el tamaño. Puedo guardar, entonces, una tupla.
+
+Ejemplo,
+A = 5 6 8 9 10 7 8 9 20 15
+escaleras = (0,2) (2,3) (5,3) (8,1) (9,1)
+
+Es fácil ver que puedo calcular el tamaño de cada escalera restando el inicio la escalera guardada en la posición i+1 al inicio de la escalera i. En caso de que no exista una escalera i+1, entonces la resta es largo(A) - inicio de la escalera i. Es decir, guardando las cosas de la forma anterior, estaría teniendo una redundancia innecesaria de información. Puedo guardar entonces las escaleras del siguiente modo:
+
+A = 5 6 8 9 10 7 8 9 20 15
+escaleras = 0 2 5 8 9
+
+Para simplificar el algoritmo, puedo guardar un último índice, poniendole el valor igual al largo del arreglo. Ejemplo:
+
+A = 5 6 8 9 10 7 8 9 20 15
+escaleras = 0 2 5 8 9 10
+
+De este modo, vale que hay largo(escaleras)-1 escaleras, y que el largo de cada escalera i, tal que i<largo(escaleras), es escaleras[i+1]-escaleras[i].
+
+Todo lo descripto es lineal, ya que lo único que se hizo fue recorrer linealmente el arreglo A, y guardar elementos en un arreglo de tamaño máximo n.
+
+Hay una mejor forma de guardar los elementos, que va a servir para la resolución posterior del problema, y es en tuplas <menos_largo,primer_elemento,inicio> en donde menos_largo es el opuesto del largo de la escalera (es decir, -k si la escalera es de largo k), inicio es la posición en donde comienza la escalera, y primer elemento es el valor de A[inicio].
+
+Ejemplo:
+
+A = 5 6 8 9 10 7 8 9 20 15
+escaleras = (-2,5,0) (-3,8,2) (-3,7,5) (-1,20,8) (-1,15,9)
+
+Si yo ordeno el arreglo escaleras en orden creciente, aplicando el orden natural de las tuplas (compara primer elemento, luego segundo en caso de empate, luego tercero en caso de empate, etc...) el resultado sería:
+
+escaleras = (-3,7,5) (-3,8,2) (-2,5,0) (-1,15,9) (-1,20,8)
+
+Es decir, 
+	* al comparar la primera posicioń de la tupla, se hace valer que estarían primero las escaleras de mayor tamaño (ya que al guardar el opuesto, los números negativos de mayor módulo son menores)
+	* si dadas dos escaleras, la primera posición de la tupla es igual, al comparar la segunda posición de la tupla, se cumple que para las escaleras del mismo tamaño, estarían primero aquellas cuyo elemento inicial sea menor
+	* no nos interesa la última comparación, ya que dadas dos escaleras iguales, no nos interesa cuál viene primero, porque en el arreglo resultado van a terminar siendo indistinguibles
+
+El ordenamiento del arreglo escaleras se puede hacer de forma eficiente en O(n logn) aplicando cualquier algoritmo de ordenamiento que cumpla con esa complejidad (ejemplo: heap sort, merge sort). 
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -127,7 +169,7 @@ Justifique por qué su algoritmo cumple con lo pedido.
 
 --
 
-Pongo todos los elementos en un AVL. Luego devuelvo el resultado de recorrerlos de menor a mayor (o mayor a menor, según el caso).
+Pongo todos los elementos en un DiccionarioAVL o un MultiConjuntoAVL. Básicamente quiero un AVL que guarde la cantidad de repeticiones de los elementos. Luego devuelvo el resultado de recorrerlos de menor a mayor (o mayor a menor, según el caso), o en caso de no poder recorrerlos fácilmente, de hacer minimo(), pop() iterativamente, hasta vaciar el AVL. La constante de este ejercicio es hermosísima.
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
