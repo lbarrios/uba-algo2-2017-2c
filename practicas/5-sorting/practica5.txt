@@ -231,7 +231,19 @@ Se necesita ordenar un arreglo(alumno) de forma tal que todas las mujeres aparez
 
 --
 
-TODO;
+1) Creo dos arreglos, notasHombres y notasMujeres que tengan 10 posiciones cada uno, y en donde en cada posición hayan punteros a listas inicializadas vacías.
+
+Recorro la entrada, y para cada alumno a hago:
+	si a.sexo==F: // O(1)
+		notasMujeres[a.puntaje].append(a) // O(1)
+	si a.sexo==M: // O(1)
+		notasHombres[a.puntaje].append(a) // O(1)
+
+Recorro el arreglo notasMujeres, y para cada lista no-vacía, la recorro, insertando los elementos de la misma en el arreglo resultado. Luego hago lo mismo con el arreglo notasHombres. En total voy a recorrer una cantidad constante de elementos en ambos arreglos (ya que cada uno es de tamaño 10), y dentro de las listas, en total van a haber a lo sumo O(n) elementos (ya que los elementos de las listas son los elementos del arreglo original). Finalmente, el resultado es la lista de alumnos ordenada por sexo, y por nota.
+
+2) En el caso del algoritmo propuesto, los alumnos se insertan en cada lista en el mismo orden en que están en el arreglo, y luego son puestos en el arreglo resultado en el mismo orden en que están en las listas, por lo que se puede afirmar que el sorting es estable. Así que, si la planilla original está ordenada por orden alfabético, la planilla resultante va a estar ordenada por orden alfabético para las mujeres de igual nota.
+
+3) En realidad está haciendo un counting sort, el cual utiliza la propiedad adicional de que existen a lo sumo 10 notas distintas, y dos sexos distintos. Y ya que los criterios de ordenamiento son por sexo y por nota, esto permite que el ordenamiento se realice de forma lineal.
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
