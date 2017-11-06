@@ -1,3 +1,7 @@
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
 Ejercicio 1)
 Escriba un algoritmo con dividir y conquistar que determine si un arreglo de tamaño potencia de 2 es más a la izquierda, donde “más a la izquierda” significa que:
 
@@ -68,3 +72,71 @@ Se verifica que cumple con la forma, tomando los siguientes parámetros:
 f(n) cumple la forma para el caso 2 del teorema maestro.
 
 Luego, T(n) = Θ(n^c * log^k+1 (n)) = Θ(n^1 log^1(n)) = Θ(n log n), que es estrictamente menor que O(n^2).
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+
+Ejercicio 2)
+Tenemos un arreglo a = [a1, a2, ..., an] de n enteros distintos (positivos y negativos) en orden estrictamente creciente. Queremos determinar si existe una posición i tal que a[i]=i. Por ejemplo, dado el arreglo a = [−4, −1, 2, 4, 7], i = 4 es esa posición.
+
+Diseñar un algoritmo dividir y conquistar eficiente (de complejidad de orden estrictamente menor que lineal) que resuelva el problema. Calcule y justifique la complejidad del algoritmo dado.
+
+--
+
+Como el orden es estrictamente creciente, vale que cada elemento del arreglo es estrictamente mayor que el anterior. Esto es lo mismo que afirmar que a[i+1] = a[i] + k, y que a[i] = a[i+1] - k, con k un número natural (no nulo).
+
+Esto implica que, si me paro en cualquier posición i del arreglo, y a[i]>i, entonces para cualquier j>=i, vale que a[j]>j. Esto es posible verlo por inducción. 
+Caso base, j=i. Vale a[i]>i vale trivialmente.
+Paso inductivo, a[j] => a[j+1]. Quiero ver si vale a[j]>j, vale a[j+1]>j+1.
+	a[j+1]			>	j+1
+	a[j] + k 		>	j+1
+	a[j] + (k-1) 	>	j
+Vale que k>=1, luego k-1>=0, y por HI también vale que a[j] > j. Luego, vale la proposición. Dicho de otro modo, para cualquier posición del arreglo, si esta no cumple la propiedad requerida, ninguna a su derecha va a cumplirla.
+
+Análogamente, dada una posición i del arreglo, si a[i]<i, vale que a[j]<j para todo j<=i. La demostración es igual que en el caso anterior, pero cambiando el símbolo > por un símbolo <, y cambiando el +k por un -k.
+
+Usando las dos propiedades anteriores, dada una posición i cualquiera del arreglo, vale lo siguiente:
+
+- Si a[i]=i, el algoritmo devuelve true
+- Si a[i]>i, a[j]=j no va a valer para ningún j>=i, por lo que ya no es necesario verificarlos. La posición buscada va a encontrarse, si existe, en a[0...i]
+- Si a[i]<i, a[j]=j no va a valer para ningún j<=i, por lo que ya no es necesario verificarlos. La posición bucada va a encontrarse, si existe, en a[i...n]
+
+Teniendo esto en cuenta, es posible hacer un algoritmo que vaya comprobando posiciones en el arreglo, y según si vale a[i]>i o a[i]<i, descartando la parte correspondiente del arreglo, y llamándose recursivamente sobre la otra porción del mismo.
+
+El mecanismo utilizado es análogo al de la búsqueda binaria. La mejor forma de implementarlo es mediante dos índices (abajo, y arriba), que vayan moviéndose por cada iteración del algoritmo.
+
+
+ejDos( in A: arreglo(T) ) -> res: bool
+	res <- ejDosRecursivo(A, 0, tam(A))
+
+ejDosRecursivo( in A: arreglo(T), in inicio: int, in fin: int ) -> res: bool
+	var medio: int
+	if fin-inicio==1								" O(1) "
+		""" Caso base: n==1 """
+		res <- A[inicio]==inicio					" O(1) "
+	else
+		""" Caso recursivo: n>1 """
+		medio <- (fin-inicio)/2 					" O(1) "
+		if A[medio] > medio							" O(1) "
+			res <- ejDosRecursivo(A, inicio, medio)	" O(recursivo) "
+		else
+			res <- ejDosRecursivo(A, medio, fin)		" O(recursivo) "
+		endif
+	end if
+
+La complejidad del algoritmo provisto es O(log n). Veamos la ecuación de recurrencia.
+
+T(n) = T(n/2) + O(1)
+T(1) = O(1)
+
+Quiero ver que T(n) = O(log n)
+
+O(log n) = T(n/2) + O(1)
+Usando inducción, por hipótesis inductiva:
+O(log n) = O(log n/2) + O(1)
+O(log n) = O(log n - log2) + O(1)
+O(log n) = O(log n) - O(log 2) + O(1) = O(log n) - O(1) + O(1) 
+O(log n) = O(log n)
+
+La complejidad propuesta se verifica.
