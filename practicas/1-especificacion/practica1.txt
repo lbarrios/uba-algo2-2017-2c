@@ -1,0 +1,48 @@
+"""
+	OBSERVADORES
+"""
+jugadores:: tablero t -> Conj(jugador)
+-- devuelve los jugadores activos de un juego
+jugadores(nuevo) = {}
+jugadores(iniciarJuego(d, p, t)) = claves(d)
+
+direccion:: jugador j, tablero t -> direccion
+	{j \in jugadores(t)}
+-- devuelve la dirección a la que se desea mover un jugador
+direccion(j, iniciarJuego(d, p, t)) = obtener(j, d)
+
+
+posicion:: jugador j, tablero t -> posicion
+	{j \in jugadores(t)}
+-- devuelve la posición en la que se encuentra un jugador
+posicion(j, iniciarjuego(d, p, t)) = obtener(j, p)
+posicion(j, avanzarTurno(t)) = if j==dameUno(jugadores, t) then siguiente(posicion(j, t), direccion(j, t), t) else posicion(j, t)
+
+terminado:: tablero t -> bool
+-- indica si un juego está terminado
+terminado(nuevo) = true
+terminado(iniciarJuego(d, p, t)) = false
+
+"""
+	GENERADORES
+"""
+nuevo:: . -> tablero 
+-- Se asume ya definida
+
+iniciarJuego:: Dicc(jugador, direccion) d x Dicc(jugador, posicion) p x tablero t -> tablero
+	{#claves(d)==64 and #claves(p)==#claves(d) and ...}
+undefined -- las direcciones y posiciones deben ser válidas?
+
+avanzarTurno:: tablero -> tablero
+
+
+
+"""
+	OTRAS OPERACIONES
+"""
+siguiente:: posicion p x direccion x tablero t -> posicion
+	{posicionValida{p, t}}
+-- Se asume ya definida
+
+posicionValida:: posicion x tablero -> bool
+-- Se asume ya definida
