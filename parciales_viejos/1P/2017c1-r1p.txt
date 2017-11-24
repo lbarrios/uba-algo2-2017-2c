@@ -1,0 +1,94 @@
+type Proceso = Integer
+type Recurso = Integer
+
+
+
+"""
+	O B S E R V A D O R E S
+"""
+procesos:: so -> Conj(Proceso)
+-- devuelve un conjunto con los procesos de un sistema operativo
+
+procesos (Crear (rs)) = {}
+procesos (IniciarProceso (so,p)) = Ag(p, procesos(so))
+procesos (SolicitarRecurso (so, p, r)) = procesos(so)
+procesos (FinalizarProceso (so, p)) = procesos(so) - {p}
+procesos (LiberaRecurso (r)) = procesos(so)
+
+recursos:: so -> Conj(Recurso)
+-- devuelve un conjunto con los recursos de un sistema operativo
+
+recursos (Crear (rs)) = r
+recursos (IniciarProceso (so, p)) = recursos(so)
+recursos (SolicitarRecurso (so, p, r)) = recusos(so)
+recursos (FinalizarProceso (so, p)) = recursos(so)
+recursos (LiberaRecurso r) = recursos(so)
+
+utilizandoRecursos:: so s -> proceso p -> Conj(Recurso)
+	{p \in procesos(s)}
+-- toma un proceso, y devuelve el conjunto de recursos que esté utilizando ese proceso
+utilizandoRecursos (IniciarProceso (so, p'), p) = if p==p' then {} else utilizandoRecursos(so, p)
+utilizandoRecursos (SolicitarRecurso (so, p', r), p) = if p==p' and \not recursoUtilizado(so, r) then Ag(utilizandoRecursos(so, p)) else utilizandoRecursos(so, p)
+utilizandoRecursos (LiberarRecurso (so, r), p) = if r \in utilizandoRecursos(so, p) then utilizandoRecursos(so, p) - {r} else (if p==dameUno(esperandoRecurso(so)) then Ag(r,utilizandoRecursos(so, p)) else utilizandoRecursos(so, p))
+
+recursoUtilizado:: so s -> recurso r -> Bool
+recursoUtilizado (Crear (rs), r) = False
+recursoUtilizado (IniciarProceso(so, p), r) = recursoUtilizado(so)
+recursoUtilizado (SolicitarRecurso(so, p, r'), r) = if r==r' then True else recursoUtilizado(so, r)
+recursoUtilizado (FinalizarProceso (so, p), r) = recursoUtilizado(so, r)
+recursoUtilizado (LiberarRecurso (so, r'), r) = if r==r' then (if vacío?(esperandoRecurso(so)) then False else True) else recursoUtilizado(so, r)
+
+esperandoRecurso:: so s -> recurso r -> Conj(Proceso)
+	{r \in recursos(s)}
+-- toma un recurso y devuelve un conjunto con los procesos que están esperando por este
+
+esperandoRecurso (Crear (rs)) = {}
+esperandoRecurso (IniciarProceso (so p)) = esperandoRecurso(so)
+esperandoRecurso (SolicitarRecurso (so, p, r'), r) = if r==r' then (if recursoUtilizado(so, r) then Ag(p, esperandoRecurso(so, r)) else {}) else esperandoRecurso(so, r)
+esperandoRecurso (FinalizarProceso (so, p), r) = esperandoRecurso(so, r)
+esperandoRecurso (LiberarRecurso (so, r'), r) = if r==r' then (if vacio?(esperandoRecurso(so)) then vacío else sinUno(esperandoRecurso(so))) else esperandoRecurso(so, r)
+
+bloqueado:: so s -> proceso p -> Bool
+	{p \in procesos(s)}
+-- toma un proceso e indica si está bloqueado (esperando un recurso)
+undefined -- Esto es un observador, o una OO??
+
+
+"""
+	G E N E R A D O R E S
+"""
+Crear:: so -> Conj(Recurso) -> so
+-- crea un SO vacío
+
+IniciarProceso:: so s -> proceso p -> so
+	{p \not \in procesos(s)}
+-- agrega un nuevo proceso a un so
+
+SolicitarRecurso:: so s -> proceso p -> recurso r -> so
+	{p \in procesos(s) and r \in recursos(s)}
+undefined -- un proceso que está bloqueado no puede perdir más recursos
+-- un proceso p solicita un recurso r
+
+FinalizarProceso:: so s -> proceso p -> so
+	{p \in procesos(s) and empty(utilizandoRecursos(s, p))}
+-- termina un proceso p
+
+LiberarRecurso:: so s -> recurso r -> so
+	{r \in recursos(s) and recursoUtilizado(s, r)}
+-- libera un recurso r
+
+
+
+"""
+	O T R A S    O P E R A C I O N E S
+"""
+generaDeadlock -> so s -> proceso p -> recurso r -> Bool
+{p \in procesos(s) and r \in recursos(s)}
+-- dado un proceso p y un recurso r, devuelve un bool indicando si solicitar ese recurso generaría deadlock
+undefined -- implementar?
+
+
+"""
+	A X I O M A S
+"""
+-- están arriba..
