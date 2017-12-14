@@ -41,6 +41,9 @@ for(i=0; i<k; i++){
 	append(B, extract-min(A));
 }
 
+La complejidad es O(n + k*log n)
+A partir de k=2 conviene heapificar, comparar 2*x vs x+2log(x)
+
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
@@ -62,6 +65,10 @@ Ejercicio 4) Se tiene un conjunto de n secuencias {s_1, s_2, ... , s_n} en donde
 	3.d) Inserto la tupla T_i' en el heap. O(log n)
 
 4) En total, voy a insertar todos los elementos de todas las secuencias, es decir K elementos, y cada paso me va a costar O(log n). El algoritmo va a tener una complejidad de O(K * log n).
+
+--
+
+Alternativamente, se puede hacer un merge similar al de mergesort cuando llegò a los casos base (mergear las secuencias de a pares).
 
 ///////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////
